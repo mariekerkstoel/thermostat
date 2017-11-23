@@ -17,7 +17,7 @@ class App < Sinatra::Base
 
   get '/' do
     unless session[:user_id]
-      user = User.create(temp: 20, city: City.first_or_create(name: 'London'))
+      user = User.create(temp: 20, city: City.first_or_create(name: 'Madrid'))
       session[:user_id] = user.id
     end
     erb(:index)
