@@ -1,23 +1,25 @@
 <html>
   <head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src='src/Thermostat.js'></script>
+    <script src='src/index.js'></script>
   </head>
 
   <!-- background image depending on temp -->
   <body>
 
     <div id='displayTemperature'>
-
+      
     </div>
 
     <div id='displayEnergyUsage'>
 
     </div>
 
-    <button type='button' value='reset'>Reset</button>
-    <button type='button' value='tempUp'>Up</button>
-    <button type='button' value='tempDown'>Down</button>
-
+    <button type='button' id='reset'>Reset</button>
+    <button type='button' id='tempUp'>Up</button>
+    <button type='button' id='tempDown'>Down</button>
+    <button type='button' id='PSM'>PSM</button>
 
   </body>
 </html>

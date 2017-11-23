@@ -1,9 +1,10 @@
-var temperatureStart = 20;
+const temperatureStart = 20;
 const minTemperature = 10;
 const maxSaving = 25;
 const maxTemp = 32;
 const lowUsage = 18;
 const mediumUsage = 25;
+const temp = 1;
 
 function Thermostat(){
   this.temperature = temperatureStart;
@@ -12,25 +13,25 @@ function Thermostat(){
 };
 
 Thermostat.prototype = {
-  temperatureUp: function(degrees) {
+  temperatureUp: function() {
     if (this.powerSavingMode === true) {
-      if (this.temperature + degrees > maxSaving){
+      if (this.temperature + temp > maxSaving){
         return 'Max temp in power saving mode is 25 degrees'
       }
-      return this.temperature += degrees;
+    return this.temperature += temp;
     } else {
-        if (this.temperature + degrees > maxTemp){
+        if (this.temperature + temp > maxTemp){
           return 'Max temp is 32 degrees';
         }
-        return this.temperature += degrees;
+     return this.temperature += temp;
     }
   },
 
-  temperatureDown: function(degrees){
-    if((this.temperature - degrees) < minTemperature){
+  temperatureDown: function(){
+    if((this.temperature - temp) < minTemperature){
       return "Min temperature is 10 degrees";
     }
-    return this.temperature -= degrees;
+    return this.temperature -= temp;
   },
 
   reset: function(){
@@ -42,16 +43,15 @@ Thermostat.prototype = {
       return 'Low usage';
     } else if(this.temperature >= mediumUsage) {
         return 'High usage';
-    } else if( this.temperature < mediumUsage && this.temperature >= lowUsage) {
+    } else {
       return 'Medium usage';
     }
   },
 
-  powerSavingModeOff: function(){
-    this.powerSavingMode = false
-  },
-
-  powerSavingModeOn: function(){
-    this.powerSavingMode = true
+  switchPowerSavingMode: function(){
+    this.powerSavingMode = !this.powerSavingMode
+    if (this.powerSavingMode) {
+      this.temperature = Math.min(this.temperature, maxSaving);
+    };
   }
 };
