@@ -6,20 +6,22 @@ $(document).ready(function() {
     $("#displayTemperature").html(thermostat.temperature);
   }
 
+  updateTemp();
+
   function updateColour() {
     $('#PSM').css('background-color', thermostat.powerSavingMode ? 'green' : 'red');
   }
 
   function update() {
-    updateTemp()
-    updateColour()
+    updateTemp();
+    updateColour();
   }
 
   $.getJSON('localhost:5000/user', function(data) {
     console.log(data)
     thermostat.temperature = data.temp;
     getWeather(data.city);
-    update()
+    update();
   });
 
   function getWeather(city = 'London') {
@@ -31,7 +33,7 @@ $(document).ready(function() {
   $.ajaxSetup({
     statusCode : {
       404: function(){
-        alert("That's not a valid city ...")
+        alert("That's not a valid city ...");
       }
     }
   });
@@ -61,5 +63,4 @@ $(document).ready(function() {
     thermostat.switchPowerSavingMode();
     update();
   });
-
 });
